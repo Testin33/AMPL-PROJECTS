@@ -1,0 +1,20 @@
+
+#reset the ampl environment
+reset;
+
+#load the model
+
+model example3.mod;
+
+#load the data
+data example3.dat;
+
+#display the problem formulation
+expand TotalCost,demandsat;
+
+#change the solver 
+option solver cplex;
+
+solve;
+
+display x,y;

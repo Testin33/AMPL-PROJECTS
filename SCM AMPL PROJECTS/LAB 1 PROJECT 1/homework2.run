@@ -1,0 +1,19 @@
+#reset the ampl environment
+reset;
+
+#load the model
+
+model homework2.mod;
+
+#load the data
+data homework2.dat;
+
+#display the problem formulation
+expand z, Constraint;
+
+#change the solver 
+option solver cplex;
+
+solve;
+
+display X,z;
