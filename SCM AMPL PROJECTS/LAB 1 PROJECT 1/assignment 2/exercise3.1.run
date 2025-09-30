@@ -1,0 +1,19 @@
+#reset the ampl environment
+reset;
+
+#load the model
+
+model exercise3.1.mod;
+
+#load the data
+data exercise3.1.dat;
+
+#display the problem formulation
+expand z, demandsat,openLink;
+
+#change the solver 
+option solver cplex;
+
+solve;
+
+display x,y,z;

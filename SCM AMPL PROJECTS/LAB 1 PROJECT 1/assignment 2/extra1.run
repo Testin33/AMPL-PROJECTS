@@ -1,0 +1,31 @@
+#reset the ampl environment
+reset;
+
+#load the model
+
+model extra1.mod;
+
+#load the data
+data extra1.dat;
+
+#display the problem formulation
+expand z, demandsat,openLink,CapacityPlant;
+
+#change the solver 
+option solver cplex;
+
+solve;
+
+display x,y,z;
+
+# Calculate and display the budget slack
+param budget_slack; # here I defined the variable
+let budget_slack := B - sum{i in I} F[i]*y[i];
+display budget_slack;
+
+# Is the budget constraint binding?
+printf "Budget binding?-> %s\n",
+       if abs(budget_slack) <= 1e-6 then "YES" else "NO";
+printf "\n\t\t IMPORTANT RESULTS";
+display y, z;
+display {i in I, j in J: x[i,j] > 0} x[i,j];
