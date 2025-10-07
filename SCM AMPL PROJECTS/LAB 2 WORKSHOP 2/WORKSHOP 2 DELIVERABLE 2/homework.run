@@ -1,0 +1,19 @@
+reset;
+
+model homework.mod;
+data homework.dat;
+
+
+expand TotalCost,DemandSatisfaction,CapacityPlant,SafetyStock,MinimunInventory;
+
+
+option solver cplex;
+
+solve;
+
+display x,y,s;
+
+printf("\nThe value of the total cost is:\t");
+
+display TotalCost;
+
