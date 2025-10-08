@@ -1,0 +1,46 @@
+#reset the ampl environment
+reset;
+
+#load the model
+
+model homework3.1.1.mod;
+
+#load the data
+data homework3.1.1.dat;
+
+
+#LETS FIRST CALCULATE ACCORDING TO O.10
+let holding_percentage := 0.10;
+
+
+#display the problem formulation
+expand z, demandsat,openLink,caplimit,mininventory,safetystock;
+#change the solver 
+option solver cplex;
+solve;
+display x,y,z,s;
+
+
+#LETS FIRST CALCULATE ACCORDING TO O.20
+let holding_percentage := 0.20;
+
+
+#display the problem formulation
+expand z, demandsat,openLink,caplimit,mininventory,safetystock;
+#change the solver 
+option solver cplex;
+solve;
+display x,y,z,s;
+
+
+
+#LETS FIRST CALCULATE ACCORDING TO O.30
+let holding_percentage := 0.30;
+
+
+#display the problem formulation
+expand z, demandsat,openLink,caplimit,mininventory,safetystock;
+#change the solver 
+option solver cplex;
+solve;
+display x,y,z,s;

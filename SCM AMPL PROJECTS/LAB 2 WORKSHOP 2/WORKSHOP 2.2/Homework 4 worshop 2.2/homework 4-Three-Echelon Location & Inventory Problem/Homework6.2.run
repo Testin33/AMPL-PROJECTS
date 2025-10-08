@@ -1,0 +1,20 @@
+#reset the ampl environment
+reset;
+
+#load the model
+
+model Homework6.2.mod;
+
+#load the data
+data Homework6.2.dat;
+
+
+#display the problem formulation
+expand z, demandsat,openLink_Plant_DC,openLink_DC_Warehouse,openLink_Warehouse_Customer,capacityplant,capacitydist,capacitywarehouse,wh_balance,dist_balance,ss_Dist_const,min_Dist_const,ss_Warehouse_const,min_Warehouse_const;
+
+#change the solver 
+option solver cplex;
+
+solve;
+
+display x_id,x_dw,x_wj,y_Warehouse,y_Dist,s_Warehouse,s_Dist,z;

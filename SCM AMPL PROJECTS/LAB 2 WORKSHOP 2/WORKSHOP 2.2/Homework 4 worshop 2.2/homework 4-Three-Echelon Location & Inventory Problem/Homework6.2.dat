@@ -1,0 +1,85 @@
+#this contains the data for 3 warehouses
+
+param n:=5; # 5 demand regions 
+param m:=5; #
+param p:=3; # warehouses 
+param t:=3;
+
+param cap_Plant:=
+1	450
+2	325
+3	500
+4	305
+5	300;
+
+#data for Distribution
+param f_Dist:=
+		1 800
+		2 650
+		3 1000;
+param cap_Dist:=
+		1 850
+		2 900
+		3 950;
+param h_Dist:=
+		1 160
+		2 130
+		3 200;
+param mininv_Dist:=
+1	50
+2	50
+3	50;
+param ss_Dist:=
+1	20
+2	20
+3	20;
+#data for Warehouse
+param f_Warehouse:=
+1 800
+2 650
+3 1000;
+param cap_Warehouse:=
+1 700
+2 650
+3 750 ;
+param h_Warehouse:=
+1 160
+2 130
+3 200;
+param mininv_Warehouse:=
+1 40
+2 40
+3 40;
+param ss_Warehouse:=
+1 15
+2 15
+3 15;
+#data for demand
+param d:=
+1	80
+2	270
+3	250
+4	160
+5	180;
+#these values were created by ourself
+param c_id:
+		1	2	3:=
+	1	85	63	160
+	2	97	100	95
+	3	125	50	95
+	4	43	104	65
+	5	70	58	31;
+#these values were created by ourself
+param c_dw:
+		1	2	3:=
+	1	81	92	101	
+	2	117	77	108	
+	3	102	105	95;
+param c_wj:
+         1    2    3    4    5 :=
+  1      81   92   101  130  115
+  2     117   77   108   98   100
+  3      102  105    95  119  111;
+
+
+
