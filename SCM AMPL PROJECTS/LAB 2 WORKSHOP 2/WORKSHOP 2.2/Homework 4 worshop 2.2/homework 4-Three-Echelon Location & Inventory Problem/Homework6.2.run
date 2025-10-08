@@ -10,7 +10,7 @@ data Homework6.2.dat;
 
 
 #display the problem formulation
-expand z, demandsat,openLink_Plant_DC,openLink_DC_Warehouse,openLink_Warehouse_Customer,capacityplant,capacitydist,capacitywarehouse,wh_balance,dist_balance,ss_Dist_const,min_Dist_const,ss_Warehouse_const,min_Warehouse_const;
+expand z,demandsat,openLink_Plant_DC,openLink_DC_Warehouse,openLink_Warehouse_Customer,capacityplant,capacitydist,capacitywarehouse,wh_balance,dist_balance,ss_Dist_const,min_Dist_const,ss_Warehouse_const,min_Warehouse_const;
 
 #change the solver 
 option solver cplex;

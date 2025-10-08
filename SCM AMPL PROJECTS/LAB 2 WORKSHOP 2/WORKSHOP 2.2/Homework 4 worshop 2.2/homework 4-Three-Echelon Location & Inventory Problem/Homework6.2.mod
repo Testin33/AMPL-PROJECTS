@@ -36,7 +36,7 @@ param c_dw {D,W}>=0; #from DC to Warehouse
 param c_wj {W,J}>=0; #from Warehouse to Customer
 
 #demand
-param d{J}>=0; # Customer Demand
+param demand{J}>=0; # Customer Demand
 
 #DECISION VARIABLES
 #binary decisions
@@ -56,14 +56,14 @@ minimize z: (sum {d in D} f_Dist[d]*y_Dist[d]) + (sum{w in W} f_Warehouse[w]*y_W
 
 #CONSTRAINTS
 #demand satisfaction constraint (checked)
-s.t. demandsat {j in J}: sum {w in W} x_wj[w,j] = d[j];
+s.t. demandsat {j in J}: sum {w in W} x_wj[w,j] = demand[j];
 
 #open link flow constraint for Plant-DC (checked)
 s.t. openLink_Plant_DC {i in I, d in D}: x_id[i,d] <= 1000000*y_Dist[d];
 #open link flow constraint for DC-Warehouse
 s.t. openLink_DC_Warehouse {d in D, w in W}: x_dw[d,w]<=1000000*y_Warehouse[w];
 #open link flow constrain Warehouse-Customer
-s.t. openLink_Warehouse_Customer {w in W, j in J}: x_wj[w,j] <= d[j]*y_Warehouse[w];
+s.t. openLink_Warehouse_Customer {w in W, j in J}: x_wj[w,j] <= demand[j]*y_Warehouse[w];
 
 #the plant capacity(checked)
 s.t. capacityplant{i in I}: sum{d in D} x_id[i,d] <= cap_Plant[i];
@@ -85,6 +85,7 @@ s.t. min_Dist_const {d in D}: s_Dist[d]>= mininv_Dist[d]*y_Dist[d];
 #safety stock of warehouse 
 s.t. ss_Warehouse_const {w in W}: s_Warehouse[w] >= ss_Warehouse[w] *y_Warehouse[w];
 #minimun Inventory for warehouse
+s.t. min_Warehouse_const {w in W}: s_Warehouse[w] >= mininv_Warehouse[w] * y_Warehouse[w];
 
 
 

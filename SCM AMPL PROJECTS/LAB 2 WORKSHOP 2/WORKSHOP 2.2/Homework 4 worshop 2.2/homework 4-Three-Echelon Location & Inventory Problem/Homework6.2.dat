@@ -55,7 +55,7 @@ param ss_Warehouse:=
 2 15
 3 15;
 #data for demand
-param d:=
+param demand:=
 1	80
 2	270
 3	250
