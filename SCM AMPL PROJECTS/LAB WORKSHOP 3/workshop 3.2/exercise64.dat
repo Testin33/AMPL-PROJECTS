@@ -1,0 +1,109 @@
+# adjusted according to 3.1.2
+param n:=5; # 5 demand regions 
+param m:=5; # 5 facilities
+param a:= 3; # 3 periods
+
+param f:=
+		1 800
+		2 650
+		3 1000
+		4 610
+		5 600;
+
+param d:	1		2		3	=
+		1	80		75		90
+		2	270		280		270
+		3	250		240		260
+		4	160		170		180
+		5	180		190		200;
+
+param c:
+		1	2	3	4	5:=
+	1	81	92	101	130	115
+	2	117	77	108	98	100
+	3	102	105	95	119	111
+	4	115	125	90	59	74
+	5	142	100	103	105	71;
+
+# transportation cost parameter
+param t:
+		1	2	3	4	5:=
+	1	5	5	5	5	5	
+	2	5	5	5	5	5
+	3	5	5	5	5	5
+	4	5	5	5	5	5
+	5	5	5	5	5	5;
+	
+param cap:=
+1	450
+2	325
+3	500
+4	305
+5	300;
+
+param h:=
+1	160
+2	130
+3	200
+4	122
+5	120;
+
+param ss:=
+1	15
+2	15
+3	15
+4	15
+5	15;
+
+param mininv:=
+1	115
+2	115
+3	115
+4	115
+5	115;
+
+# transportation capacity
+param transcap:=
+1	270
+2	195
+3	300
+4	183
+5	180;
+
+# production/procurement cost
+param  p:=
+1	8
+2	6.5
+3	10.0
+4	6.1
+5	6;
+
+# initial inventory
+param  init:=
+1	10
+2	10
+3	10
+4	10
+5	10;
+
+# PARAMETER FOR EXERCISE 6.1.2
+param mult :=
+1	1
+2	1 	# 20% increase for period 2
+3	1;
+
+# PARAMETER FOR EXERCISE 6.1.3
+param costmult :=
+  1 1
+  2 1
+  3 1
+  4 1
+  5 1;
+
+# PARAMETER FOR TRANSPORTATION COST INCREASE
+# 10% increase in transportation costs (for new analysis)
+param transcostmult := 1.1;
+
+
+
+

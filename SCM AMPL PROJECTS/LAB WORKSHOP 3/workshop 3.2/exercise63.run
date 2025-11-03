@@ -1,0 +1,22 @@
+#reset the ampl environment
+reset;
+
+#load the model
+
+model exercise63.mod;
+
+#load the data
+data exercise63.dat;
+
+
+#display the problem formulation
+expand z, demandsat,openLink,
+caplimit,mininventory,safetystock,transportation_cap,
+inventory_balance_first_period,inventory_balance;
+
+#change the solver 
+option solver cplex;
+
+solve;
+
+display x,y,z,s;
