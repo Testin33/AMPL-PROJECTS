@@ -1,0 +1,31 @@
+# ==============================
+# basemodel.run
+# ==============================
+
+reset;
+
+# (opcional) especificar solver
+# option solver cplex;
+# option solver gurobi;
+# o el que uses normalmente
+
+model basemodel.mod;
+data  basemodel.dat;
+
+solve;
+
+# Mostrar valor óptimo de la función objetivo
+display Total_Distance;
+
+# Que AMPL no imprima filas/columnas con todo cero
+option omit_zero_rows 1;
+
+printf "\n=== Active arcs (x[k,i,j] = 1) ===\n";
+display {k in K, i in V, j in V: i != j and x[k,i,j] > 0.5} x[k,i,j];
+
+printf "\n=== Vehicle loads (load[k,i] > 0) ===\n";
+display {k in K, i in V: load[k,i] > 0.0001} load[k,i];
+
+printf "\n=== Service start times (s[k,i] > 0) ===\n";
+display {k in K, i in V: s[k,i] > 0.0001} s[k,i];
+
