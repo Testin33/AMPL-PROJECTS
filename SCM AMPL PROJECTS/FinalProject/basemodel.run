@@ -2,15 +2,12 @@
 # basemodel.run
 # ==============================
 
-reset;
-
-# (opcional) especificar solver
-# option solver cplex;
-# option solver gurobi;
-# o el que uses normalmente
 
 model basemodel.mod;
 data  basemodel.dat;
+
+
+option solver cplex;
 
 solve;
 
@@ -28,4 +25,38 @@ display {k in K, i in V: load[k,i] > 0.0001} load[k,i];
 
 printf "\n=== Service start times (s[k,i] > 0) ===\n";
 display {k in K, i in V: s[k,i] > 0.0001} s[k,i];
+
+# =======================================
+# Imprimir rutas ordenadas para cada k ∈ K
+# =======================================
+
+printf "\n=== Rutas por vehículo ===\n";
+
+param current;
+param nxt;
+for {k in K} {
+
+    # ¿Este vehículo se usa?
+    if sum{i in V, j in V} x[k,i,j] < 0.5 then {
+        printf "Vehículo %s: no utilizado.\n", k;
+    } else {
+        printf "Vehículo %s: ", k;
+        # Comenzamos en el depot 0
+        let current := 0;
+        printf "%d", current;
+
+        repeat {
+            # Buscar el siguiente nodo j tal que x[k,cur,j] = 1
+            # Como el modelo obliga a un solo arco saliendo, 
+            # el max sobre j en {h in V: x[k,cur,h] > 0.5} devuelve ese único nodo.
+            let nxt := max{h in V: x[k,current,h] > 0.5} h;
+
+            printf " -> %d", nxt;
+            let current := nxt;
+        } until current = 0;
+
+        printf "\n";
+    }
+}
+
 
